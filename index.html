@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gabriel Thomas</title>
+<meta name="description" content="Gabriel Thomas studies environmental science and economics at the University of Chicago, working on ecological sensing, natural capital, and climate risk.">
+<meta name="author" content="Gabriel deLima Thomas">
+<meta property="og:title" content="Gabriel Thomas">
+<meta property="og:description" content="Ecology, economics, and the systems between them.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="images/logo.png">
+<style>
+  [hidden]{display:none!important}
+  html{color-scheme:light}
+  body{margin:0}
+  img{max-width:100%}
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Karla:wght@500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: a full-bleed misty ridgeline over water, then one narrow reading column; name + nav, a waterline, then the page */
+:root{
+  --bg:#edf1ec;        /* marine-layer fog */
+  --ink:#13261f;       /* spruce black */
+  --muted:#6d8177;     /* lichen */
+  --line:#d0dad2;      /* hairline */
+  --wash:#dbe6df;      /* open-node fill */
+  --accent:#1f5f6b;    /* Puget Sound */
+  --deep:#1b3f37;      /* Douglas fir */
+  --moss:#5d7c4c;      /* moss */
+  --cedar:#9c5a37;     /* cedar bark, used once */
+  --sky-top:#d6e0dc; --ridge-far:#b4c5be; --ridge-near:#163730; --water:#2b5b63;
+  --lake:#cfe0de; --lake-open:#b5d0d1; --river:#4d8792;
+  --serif:"EB Garamond", Georgia, "Times New Roman", serif;
+  --label:"Karla", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a1512; --ink:#dde7e0; --muted:#6b8077; --line:#1c2c27; --wash:#12261f;
+    --accent:#72b4c0; --deep:#a3c9ad; --moss:#8aab76; --cedar:#d48c62;
+    --sky-top:#0f2326; --ridge-far:#1f3b37; --ridge-near:#040a08; --water:#123540;
+    --lake:#0f2e36; --lake-open:#15414f; --river:#3d8796; color-scheme:dark;
+  }
+  :root:not([data-theme="light"]) .brand .mark .logo-l{display:none}
+  :root:not([data-theme="light"]) .brand .mark .logo-d{display:block}
+}
+:root[data-theme="dark"]{
+  --bg:#0a1512; --ink:#dde7e0; --muted:#6b8077; --line:#1c2c27; --wash:#12261f;
+  --accent:#72b4c0; --deep:#a3c9ad; --moss:#8aab76; --cedar:#d48c62;
+  --sky-top:#0f2326; --ridge-far:#1f3b37; --ridge-near:#040a08; --water:#123540;
+    --lake:#0f2e36; --lake-open:#15414f; --river:#3d8796; color-scheme:dark;
+}
+:root[data-theme="dark"] .brand .mark .logo-l{display:none}
+:root[data-theme="dark"] .brand .mark .logo-d{display:block}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:880px;margin:0 auto;padding-inline:28px;padding-block:28px 40px}
+.masthead{position:relative;background:var(--bg)}
+.horizon{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wrap.mast{position:relative;z-index:1;padding-block:44px 0}
+.wrap.page{padding-block:34px 36px}
+.navrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ridge-gap{height:clamp(112px,19vw,210px)}
+.ctrl svg,.soc svg{display:block}
+.soc{color:inherit;display:inline-flex;padding:4px;border-radius:6px;transition:color .2s}
+.soc:hover{color:var(--accent)}
+
+/* ---------- header ---------- */
+.top{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;justify-self:start;max-width:100%;min-width:0}
+.brand .name{min-width:0}
+.brand .mark{width:46px;height:46px;flex:none}
+.brand .mark img{width:100%;height:100%;object-fit:contain;display:block}
+.brand .mark .logo-d{display:none}
+.brand .name{font-size:26px;font-weight:500;letter-spacing:.005em;line-height:1.1}
+.brand .tag{display:block;font-size:15px;font-style:italic;color:var(--muted);font-weight:400;margin-top:2px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 22px}
+nav a{text-decoration:none;color:var(--muted);font-size:19px;transition:color .2s}
+nav a:hover{color:var(--accent)}
+nav a[aria-current="page"]{color:var(--ink)}
+nav .ext{font-size:.6em;margin-left:3px;vertical-align:.45em;color:var(--moss)}
+.controls{display:flex;align-items:center;gap:10px;color:var(--muted);margin-right:-4px}
+.ctrl{background:none;border:0;padding:4px;color:inherit;cursor:pointer;display:inline-flex;border-radius:6px}
+.ctrl:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.rule{border:0;height:1px;margin:40px 0 8px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+
+/* ---------- other sections ---------- */
+.view h1{font-weight:500;font-size:40px;line-height:1.15;margin:0 0 6px;text-wrap:balance}
+.lede{font-style:italic;color:var(--muted);font-size:19px;margin:0 0 26px}
+.slot{border:1.3px dashed var(--line);border-radius:4px;padding:28px 26px;color:var(--muted);font-size:17px}
+.slot strong{font-family:var(--label);font-weight:600;font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.creed{font-size:clamp(23px,3.2vw,29px);line-height:1.35;font-weight:400;margin:0 0 30px;max-width:38ch;text-wrap:balance}
+.creed em{color:var(--accent);font-style:italic}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,330px);gap:40px;align-items:stretch}
+.about .creed{max-width:none}
+.about figure{padding-top:6px}
+.about figure{display:flex;flex-direction:column}
+#v-about{position:relative}
+#v-about > :not(.texture){position:relative;z-index:1}
+.texture{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:0;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 6%,#000 90%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 6%,#000 90%,transparent)}
+.bio p{margin:0 0 16px;max-width:62ch}
+.bio .kicker{font-family:var(--label);font-weight:600;font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--moss);margin:0 0 4px}
+.bio .kicker ~ .kicker{margin-top:22px}
+/* measure → model → price → act: a real sequence, drawn as a river running left to right */
+.practice{margin-top:34px}
+.practice .kicker{font-family:var(--label);font-weight:600;font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--moss);margin:0 0 4px}
+.practice > p{margin:0 0 18px;max-width:62ch}
+.chain{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 22px}
+.chain li{position:relative;display:flex;flex-direction:column;gap:6px;padding-top:24px;font-size:16.5px;line-height:1.5}
+.chain li::before{content:"";position:absolute;left:10px;right:-22px;top:5px;height:1.5px;background:var(--river);opacity:.55}
+.chain li:last-child::before{display:none}
+.chain li::after{content:"";position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--river)}
+.chain li:last-child::after{background:var(--river)}
+.chain b{font-family:var(--label);font-weight:600;font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--accent)}
+.about figure,.strip figure{margin:0;min-width:0}
+.about img,.strip img{width:100%;max-width:100%;display:block;object-fit:cover;border-radius:2px}
+.about figure img{flex:1 1 auto;min-height:340px;height:0;object-position:50% 30%}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em}
+.strip{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px;margin:32px 0 0}
+.strip img{height:clamp(220px,34vw,340px)}
+.contact{display:grid;gap:6px;margin-top:36px;padding-block:16px;border-block:1px solid var(--line);font-size:17px}
+.contact .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.contact .k{font-family:var(--label);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--moss);width:84px;flex:none}
+.contact a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)}
+.contact a:hover{border-color:var(--accent)}
+.copy{font:inherit;font-family:var(--mono);font-size:11.5px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:1px 10px;cursor:pointer}
+.copy:hover{color:var(--accent);border-color:var(--accent)}
+.sec{font-family:var(--label);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);margin:0;padding-bottom:10px;border-bottom:1px solid var(--line)}
+/* resume: the page itself, laid on the fog like paper */
+.resume-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px;margin-bottom:22px}
+.resume-head .lede{margin:0}
+.pdf-link{font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 14px;white-space:nowrap}
+.pdf-link:hover{border-color:var(--accent)}
+.paper{margin:0;background:#fff;border:1px solid var(--line);box-shadow:0 1px 2px rgba(10,30,25,.06),0 12px 32px -12px rgba(10,30,25,.22)}
+.paper img{display:block;width:100%;height:auto}
+/* field notes: one wide frame, then a field-journal masonry */
+.fn-hero{margin:0 0 18px}
+.fn-hero img{display:block;width:100%;max-width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 45%;border-radius:2px}
+.fn-grid{columns:3 230px;column-gap:16px}
+.fn-grid figure{margin:0 0 18px;break-inside:avoid}
+.fn-grid img{display:block;width:100%;max-width:100%;height:auto;border-radius:2px}
+/* bookshelf: two side-by-side ledgers */
+.shelves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 48px}
+.shelf{list-style:none;margin:0;padding:0}
+.shelf li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 16px;padding:14px 0 13px;border-bottom:1px solid var(--line)}
+.shelf cite{font-style:italic;font-size:21px;line-height:1.25;grid-column:1}
+.shelf span{grid-column:1;color:var(--muted);font-size:16px;margin-top:2px}
+.shelf em{grid-column:2;grid-row:1 / span 2;align-self:center;font-style:normal;font-family:var(--mono);font-size:12.5px;color:var(--moss);font-variant-numeric:tabular-nums}
+/* about: one-glance summary */
+.brief{margin-top:44px}
+.brief dl{margin:0}
+.brief dl > div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.brief dt{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:4px}
+.brief dd{margin:0;font-size:17px;max-width:62ch}
+.more{color:var(--accent);text-decoration:none;white-space:nowrap;border-bottom:1px solid var(--line)}
+.more:hover{border-color:var(--accent)}
+/* research + projects: field-log entries */
+.entries{border-top:1px solid var(--line)}
+.entry{display:grid;grid-template-columns:170px minmax(0,1fr);gap:6px 32px;padding:30px 0 32px;border-bottom:1px solid var(--line)}
+.entry .em{display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:9px;font-variant-numeric:tabular-nums}
+.entry .em .status{color:var(--cedar)}
+.entry h2{font-weight:500;font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+.entry .role{font-style:italic;color:var(--muted);margin:2px 0 12px}
+.entry p{margin:0 0 12px;max-width:62ch}
+.pts{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:7px;max-width:62ch;font-size:17px}
+.pts li{position:relative;padding-left:20px}
+.pts li::before{content:"";position:absolute;left:2px;top:.72em;width:9px;height:1.3px;background:var(--moss)}
+.tags{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.02em;margin:4px 0 0}
+.tags span+span::before{content:" · ";color:var(--muted)}
+.entry .tags{max-width:none}
+.tags{display:flex;flex-wrap:wrap;row-gap:2px}
+.tags span{white-space:pre}
+.site{font-size:16px;color:var(--muted)}
+.site b{font-family:var(--label);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--moss);margin-right:8px}
+
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.03em}
+
+@media (max-width:640px){
+  .wrap{padding-inline:18px;padding-block:32px 28px}
+  .wrap.mast{padding-block:30px 0}
+  .wrap.page{padding-block:24px 28px}
+  .view h1{font-size:34px}
+  nav ul{gap:4px 18px}
+  nav a{font-size:18px}
+  .rule{margin-top:30px}
+  .about{grid-template-columns:minmax(0,1fr);gap:28px}
+  .about figure{max-width:340px}
+  .shelves{grid-template-columns:minmax(0,1fr)}
+  .chain{grid-template-columns:minmax(0,1fr);gap:14px}
+  .chain li{padding:0 0 0 22px}
+  .chain li::before{left:4px;right:auto;top:12px;bottom:-16px;width:1.5px;height:auto}
+  .chain li::after{top:2px}
+  .about figure img{height:auto;min-height:0;aspect-ratio:4/5}
+  .strip{grid-template-columns:minmax(0,1fr)}
+  .strip img{height:auto;aspect-ratio:4/3}
+  .brief dl > div{grid-template-columns:minmax(0,1fr);gap:2px}
+  .brief dt{padding-top:0}
+  .entry{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 0 26px}
+  .entry .em{flex-direction:row;flex-wrap:wrap;gap:4px 14px;padding-top:0}
+  .entry h2{font-size:25px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="masthead">
+<canvas class="horizon" id="horizon" aria-hidden="true"></canvas>
+<div class="wrap mast">
+  <header class="top">
+    <a class="brand" href="#about" aria-label="Gabriel Thomas, home">
+      <span class="mark"><img class="logo-l" src="images/logo.png" alt=""><img class="logo-d" src="images/logo-dark.png" alt=""></span>
+      <span class="name">Gabriel Thomas<span class="tag">Environmental science &amp; economics, University of Chicago</span></span>
+    </a>
+    <div class="ridge-gap" aria-hidden="true"></div>
+    <div class="navrow">
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about" data-view="about">About</a></li>
+        <li><a href="#research" data-view="research">Research</a></li>
+        <li><a href="#projects" data-view="projects">Projects</a></li>
+        <li><a href="#resume" data-view="resume">Resume</a></li>
+        <li><a href="https://substack.com/@themarlinway" target="_blank" rel="noopener" title="Writings on Substack">Writings<span class="ext" aria-hidden="true">↗</span></a></li>
+        <li><a href="#bookshelf" data-view="bookshelf">Bookshelf</a></li>
+        <li><a href="#field-notes" data-view="field-notes">Field Notes</a></li>
+      </ul>
+    </nav>
+    <div class="controls">
+      <a class="soc" href="https://www.linkedin.com/in/gabriel-d-thomas" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      </a>
+      <a class="soc" href="https://github.com/gdt714308" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2.1c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.6-2.67-.31-5.47-1.34-5.47-5.94 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.23 1.92 1.23 3.23 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .3"/></svg>
+      </a>
+      <button class="ctrl" id="theme-btn" type="button" title="Switch theme" aria-label="Switch light or dark theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+    </div>
+  </header>
+</div>
+</div>
+<div class="wrap page">
+  <main>
+    <!-- ABOUT -->
+    <section class="view" id="v-about" hidden>
+      <canvas class="texture" id="about-tex" aria-hidden="true"></canvas>
+      <div class="about">
+        <div class="bio">
+      <h1>About</h1>
+      <p class="creed">Student, outdoorsman, and utilitarian seeking to align the global economy with <em>planetary health</em> and <em>human well-being</em>.</p>
+          <p class="kicker">The theory</p>
+          <p>Ecology and economics are two ends of one framework. Every economy runs on natural capital: water, soil, forests, fisheries, and a stable climate. Yet most markets still price it poorly or not at all.</p>
+          <p>People often ask me whether more climate data can accomplish anything, given how many warnings have already been ignored. I think the problem was never the amount of information. It was the form. Global, long-horizon estimates are easy to discount. A causally identified cost for a specific place is not. It turns "society bears a cost" into "this county, this water district, this budget bears a cost," and it gives insurers, budget offices, regulators, courts, and investors a number to act on. Once a cost has a real price, the people who pay it have leverage to change the system.</p>
+        </div>
+        <figure>
+          <img src="images/photo.jpg" alt="Gabriel at dinner in Chicago">
+          <figcaption>Chicago, IL</figcaption>
+        </figure>
+      </div>
+
+      <div class="practice">
+        <p class="kicker">The practice</p>
+        <p>Climate action is short on operators: people who change systems through incentives backed by strong science. That is the role I am building toward, and my work follows the chain from measurement to action.</p>
+        <ol class="chain">
+          <li><b>Measure</b><span>Sensor networks and machine learning track ecosystems continuously, not once a decade.</span></li>
+          <li><b>Model</b><span>Those data feed climate and economic models at local scale, like our 30-year projection of Chicago's heat costs.</span></li>
+          <li><b>Price</b><span>Theseus Capital tests whether markets price climate risk and natural capital correctly.</span></li>
+          <li><b>Act</b><span>Real prices give stakeholders, especially in developing economies, the leverage to manage energy and natural capital.</span></li>
+        </ol>
+      </div>
+      <div class="strip">
+        <figure>
+          <img src="images/fish.jpg" alt="Gabriel holding a steelhead in a drift boat on a forested river">
+          <figcaption>Steelhead, from the drift boat</figcaption>
+        </figure>
+        <figure>
+          <img src="images/safari.jpg" alt="Gabriel in a safari vehicle holding binoculars, small planes on an airstrip behind him">
+          <figcaption>Airstrip, on safari</figcaption>
+        </figure>
+      </div>
+
+      <section class="brief" aria-label="In brief">
+        <h2 class="sec">In brief</h2>
+        <dl>
+          <div><dt>Studying</dt><dd>BS in Environmental Science and BA in Economics (Data Science) at the University of Chicago, expected 2028. Senior partner at Midway Ventures, Tech Review writer, former varsity wrestler.</dd></div>
+          <div><dt>Research</dt><dd>Machine learning for ecosystem monitoring at Enterprise Neurosystems, and climate-intervention modeling at UChicago's Climate Systems Engineering Initiative and Existential Risk Laboratory. <a class="more" href="#research">See research →</a></dd></div>
+          <div><dt>Projects</dt><dd>Founder of the Antaeus Group, winner of the 2026 UChicago Climate Case Competition, and building Theseus Capital. <a class="more" href="#projects">See projects →</a></dd></div>
+          <div><dt>Experience</dt><dd>Energy consulting at Converge Strategies, venture diligence at 44 North Capital Management, and operations at Rise Reforming.</dd></div>
+          <div><dt>Recognition</dt><dd>3rd place at the Midway Ideathon, and an honorable mention (45 of 9,000) in the New York Times Narrative Essay Contest.</dd></div>
+        </dl>
+      </section>
+      <div class="contact">
+        <div class="row"><span class="k">Email</span><span id="email">gdt714308@icloud.com</span><button class="copy" id="copy-email" type="button">Copy</button></div>
+        <div class="row"><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gabriel-d-thomas" target="_blank" rel="noopener">gabriel-d-thomas</a></div>
+        <div class="row"><span class="k">GitHub</span><a href="https://github.com/gdt714308" target="_blank" rel="noopener">gdt714308</a></div>
+        <div class="row"><span class="k">Meet</span><a href="https://calendar.app.google/ctDBfhkEYBdi8agH9" target="_blank" rel="noopener">Book a time to talk ↗</a></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-research" hidden>
+      <h1>Research</h1>
+      <p class="lede">Measuring ecosystems in real time, and modeling the climate at planetary scale.</p>
+      <div class="entries">
+        <article class="entry">
+          <div class="em"><span>Apr 2026 – present</span><span>Bay Area, CA</span></div>
+          <div>
+            <h2>Enterprise Neurosystems</h2>
+            <p class="role">Researcher, ML for Ecosystem Analysis</p>
+            <p>Building edge-computing sensor stacks that identify wildlife and track animal health as it happens, in the field.</p>
+            <ul class="pts">
+              <li>Built edge sensor stacks that run MegaDetector on-device to parse camera images for real-time species detection.</li>
+              <li>Developed back-end species identification and health and activity indicators with a custom-tuned SpeciesNet model.</li>
+              <li>Designing a heat-map vision tool, integrated with the back-end analysis, that surfaces animal activity and health.</li>
+            </ul>
+            <p class="site"><b>Field sites</b>Dangermond Preserve, California · Bwindi Impenetrable Forest, Uganda</p>
+            <p class="tags"><span>MegaDetector</span><span>SpeciesNet</span><span>Edge computing</span><span>Computer vision</span></p>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="em"><span>Mar – Jun 2026</span><span>UChicago</span><span class="status">Report forthcoming</span></div>
+          <div>
+            <h2>Existential Risk Laboratory</h2>
+            <p class="role">Researcher, Nuclear Winter Mitigation Strategies</p>
+            <p>Co-authored a report assessing the existential risk of nuclear winter and evaluating ways to mitigate it.</p>
+            <ul class="pts">
+              <li>Derived energy-efficiency calculations and models to assess feasibility and return on infrastructure investment.</li>
+              <li>Developed two intervention pathways, electrostatic coagulation and endothermic photodissociation, to reduce aerosol forcing after a large-scale nuclear conflict.</li>
+            </ul>
+            <p class="tags"><span>Aerosol forcing</span><span>Energy modeling</span><span>Catastrophic risk</span></p>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="em"><span>Oct 2025 – Jun 2026</span><span>UChicago</span></div>
+          <div>
+            <h2>Climate Systems Engineering Initiative</h2>
+            <p class="role">Researcher, Climate Forcing Modeling · Advisor: Jim Franke</p>
+            <p>Modeled stratospheric aerosol injection and what it would mean for regional climate risk.</p>
+            <ul class="pts">
+              <li>Built Python models of stratospheric aerosol injection, projecting temperature and precipitation anomalies and regional climate risk.</li>
+              <li>Modeled radiative forcing and climate responses to assess regional extreme-weather risk.</li>
+              <li>Evaluated feasibility, risk profiles, and governance options for climate-intervention technologies.</li>
+            </ul>
+            <p class="tags"><span>Stratospheric aerosol injection</span><span>Radiative forcing</span><span>Python</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="v-projects" hidden>
+      <h1>Projects</h1>
+      <p class="lede">The group I lead, a competition win, and the venture I'm building.</p>
+      <div class="entries">
+        <article class="entry">
+          <div class="em"><span>May 2026 – present</span><span>UChicago</span></div>
+          <div>
+            <h2>Antaeus Group</h2>
+            <p class="role">Founder &amp; Lead Researcher · Actionable climate-economics insights</p>
+            <p>A research group of UChicago master's and undergraduate students building an economic model that prices in climate change and natural capital.</p>
+            <ul class="pts">
+              <li>Adjusting conventional economic models to show where policy action and investment are needed.</li>
+              <li>Directing a 30-year projection of Chicago's heat costs, layering climate simulations of hot-day distributions with economic cost models of mortality and lost productivity.</li>
+            </ul>
+            <p class="tags"><span>Natural capital</span><span>Climate economics</span><span>Heat risk</span></p>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="em"><span>Ongoing</span><span class="status">In development</span></div>
+          <div>
+            <h2>Theseus Capital</h2>
+            <p class="role">Founder · The natural capital misalignment hypothesis</p>
+            <p>An investment hypothesis built on the gap between what markets charge and what the physical world can sustain.</p>
+            <ul class="pts">
+              <li>Major commodities, real estate markets, and municipal bonds still do not account for climate risk or natural capital.</li>
+              <li>Developing an investment hypothesis that tracks this misalignment, market by market.</li>
+              <li>Aiming to show that markets will converge on physical realities, and that pricing those realities correctly is immensely valuable.</li>
+            </ul>
+            <p class="tags"><span>Natural capital</span><span>Climate risk</span><span>Asset pricing</span></p>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="em"><span>2026</span><span>UChicago</span><span class="status">Winner</span></div>
+          <div>
+            <h2>UChicago Climate Case Competition</h2>
+            <p class="role">Illinois clean energy grid transition</p>
+            <p>Our team modeled a transition of the Illinois grid that reaches 95.1% clean electricity by 2045, and designed a three-part plan to pay for it.</p>
+            <ul class="pts">
+              <li>An externality tax that prices the damage from fossil generation.</li>
+              <li>Clean power purchase agreements as a condition for new data centers.</li>
+              <li>Green bonds paired with federal grants.</li>
+            </ul>
+            <p class="tags"><span>Energy transition</span><span>Project finance</span><span>Policy design</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="view" id="v-resume" hidden>
+      <div class="resume-head">
+        <div><h1>Resume</h1><p class="lede">One page, letter size.</p></div>
+        <a class="pdf-link" href="resume.pdf" target="_blank" rel="noopener">Open the PDF ↗</a>
+      </div>
+      <figure class="paper">
+        <img src="images/resume-pg-1.jpg" alt="Gabriel deLima Thomas, resume: education at the University of Chicago, research at Enterprise Neurosystems, Antaeus Group, the Existential Risk Laboratory and the Climate Systems Engineering Initiative, work at Converge Strategies, Rise Reforming and 44 North Capital Management, and skills.">
+      </figure>
+    </section>
+    <section class="view" id="v-bookshelf" hidden>
+      <h1>Bookshelf</h1><p class="lede">Books and films that stuck.</p>
+      <div class="shelves">
+        <section>
+          <h2 class="sec">Books</h2>
+          <ol class="shelf">
+            <li><cite>The Old Man and the Sea</cite><span>Ernest Hemingway</span><em>1952</em></li>
+            <li><cite>The Sun Also Rises</cite><span>Ernest Hemingway</span><em>1926</em></li>
+            <li><cite>Encounters with the Archdruid</cite><span>John McPhee</span><em>1971</em></li>
+            <li><cite>Pricing the Priceless</cite><span>Paula DiPerna</span><em>2022</em></li>
+            <li><cite>Speed &amp; Scale</cite><span>John Doerr</span><em>2021</em></li>
+          </ol>
+        </section>
+        <section>
+          <h2 class="sec">Films</h2>
+          <ol class="shelf">
+            <li><cite>The Green Knight</cite><span>David Lowery</span><em>2021</em></li>
+            <li><cite>The Mission</cite><span>Roland Joffé</span><em>1986</em></li>
+            <li><cite>Ex Machina</cite><span>Alex Garland</span><em>2014</em></li>
+            <li><cite>The Matrix</cite><span>The Wachowskis</span><em>1999</em></li>
+            <li><cite>2001: A Space Odyssey</cite><span>Stanley Kubrick</span><em>1968</em></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+    <section class="view" id="v-field-notes" hidden>
+      <h1>Field Notes</h1><p class="lede">Rivers, flats, and open water.</p>
+      <figure class="fn-hero">
+        <img src="images/fn-dawn.jpg" alt="A billfish leaps from dark open water at dawn, a bent rod and gloved hand in the foreground">
+        <figcaption>A billfish jumps at first light</figcaption>
+      </figure>
+      <div class="fn-grid">
+        <figure><img src="images/fn-atlantic.jpg" alt="Gabriel kneeling in a river holding a large Atlantic salmon, grassy bank and a cliff behind" loading="lazy"><figcaption>Atlantic salmon</figcaption></figure>
+        <figure><img src="images/fn-sailfish.jpg" alt="Gabriel and the boat's mate holding a sailfish on deck, open ocean behind" loading="lazy"><figcaption>Sailfish, with the mate</figcaption></figure>
+        <figure><img src="images/fn-leopard.jpg" alt="A leopard in tall sunlit grass with a warthog in its jaws" loading="lazy"><figcaption>Leopard with a warthog, on safari</figcaption></figure>
+        <figure><img src="images/fn-brown.jpg" alt="A brown trout lying in a clear rubber landing net over green streamside plants" loading="lazy"><figcaption>Brown trout in the net</figcaption></figure>
+        <figure><img src="images/fn-steelhead.jpg" alt="Gabriel in waders holding a steelhead in a river under grey skies" loading="lazy"><figcaption>Steelhead, in the rain</figcaption></figure>
+        <figure><img src="images/fn-river.jpg" alt="A calm river curving between wooded banks, a small rowboat moored in the reeds below a mown bank" loading="lazy"><figcaption>Rowboat on the river</figcaption></figure>
+        <figure><img src="images/fn-muir.jpg" alt="A wooden trailhead sign at Muir Woods National Monument showing a trail map along Redwood Creek" loading="lazy"><figcaption>Trailhead, Muir Woods</figcaption></figure>
+        <figure><img src="images/fn-beach.jpg" alt="A cobble beach with driftwood under conifers, forested mountains across the water" loading="lazy"><figcaption>Cobble beach, under the conifers</figcaption></figure>
+        <figure><img src="images/fn-rocks.jpg" alt="Gabriel holding a striped bass on harbor rocks beside a boy, a building on pilings and rushing water behind" loading="lazy"><figcaption>Striped bass, off the rocks</figcaption></figure>
+        <figure><img src="images/fn-wading.jpg" alt="Two anglers in waders on a clear, rocky mountain stream, one casting a fly rod toward a rock wall" loading="lazy"><figcaption>Learning to cast on a mountain stream</figcaption></figure>
+        <figure><img src="images/fn-stripers.jpg" alt="A young Gabriel on a boat holding a striped bass, a rocky island behind" loading="lazy"><figcaption>Striped bass, early days</figcaption></figure>
+        <figure><img src="images/fn-salmon-pair.jpg" alt="A young Gabriel on a gravel riverbank holding two salmon" loading="lazy"><figcaption>Salmon, early days</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Chicago · 41.79° N, 87.60° W</span>
+    <span>© 2026 Gabriel Thomas</span>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+(() => {
+  /* ---------- theme toggle ---------- */
+  const root = document.documentElement;
+  try { const t = localStorage.getItem('gt-theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('gt-theme', root.dataset.theme); } catch (e) {}
+  });
+
+  /* ---------- horizon: layered firs in fog over water ---------- */
+  const cv = document.getElementById('horizon');
+  function rng(seed){ return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function drawHorizon(){
+    const cs = getComputedStyle(root), tok = n => cs.getPropertyValue(n).trim();
+    const dpr = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = w * dpr; cv.height = h * dpr;
+    const c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const bg = tok('--bg'), sky = tok('--sky-top'), far = tok('--ridge-far'), near = tok('--ridge-near'), water = tok('--water');
+    const mix = d3.interpolateRgb(far, near);
+    const R = rng(714308);
+    // geometry follows the header: ridges fill the gap under the name, water fades out just above the nav
+    const mb = cv.getBoundingClientRect();
+    const gapR = document.querySelector('.ridge-gap').getBoundingClientRect();
+    const navR = document.querySelector('.top nav').getBoundingClientRect();
+    const top = gapR.top - mb.top - 4, we = navR.top - mb.top - 6, shore = we - 38, Z = shore - top;
+    // sky
+    let g = c.createLinearGradient(0, 0, 0, shore); g.addColorStop(0, sky); g.addColorStop(1, d3.interpolateRgb(sky, bg)(0.6));
+    c.fillStyle = bg; c.fillRect(0, 0, w, h);
+    c.fillStyle = g; c.fillRect(0, 0, w, shore + 2);
+    const L = 5;
+    const ridges = [];
+    for (let i = 0; i < L; i++){
+      const t = i / (L - 1);
+      const base = shore - Z * (0.60 - 0.50 * t);
+      const amp = Z * (0.20 - t * 0.11);
+      const p = [R()*6, R()*6, R()*6], f = [1.3 + R(), 3.1 + R()*2, 7 + R()*4];
+      const y = x => base - amp * (0.55*Math.sin(x/w*f[0]*Math.PI + p[0]) + 0.3*Math.sin(x/w*f[1]*Math.PI + p[1]) + 0.15*Math.sin(x/w*f[2]*Math.PI + p[2]));
+      ridges.push({ y, t });
+      c.fillStyle = mix(Math.pow(t, 1.25));
+      c.beginPath(); c.moveTo(0, shore + 2);
+      for (let x = 0; x <= w; x += 4) c.lineTo(x, y(x));
+      c.lineTo(w, shore + 2); c.closePath(); c.fill();
+      // conifers on the nearer ridges
+      if (i >= 1){
+        const th = (6 + t * 26) * Math.min(1.2, Math.max(0.7, Z / 170));
+        let x = -R() * 8;
+        while (x < w + 10){
+          const hh = th * (0.55 + R() * 0.7), bw = hh * (0.24 + R()*0.06), yy = y(x) + 2;
+          c.beginPath(); c.moveTo(x, yy - hh);
+          const tiers = 4;
+          for (let k = 1; k <= tiers; k++){ const ty = yy - hh + hh * k / tiers; c.lineTo(x + bw * k / tiers, ty); c.lineTo(x + bw * k / tiers * 0.45, ty - hh*0.05); }
+          for (let k = tiers; k >= 1; k--){ const ty = yy - hh + hh * k / tiers; c.lineTo(x - bw * k / tiers * 0.45, ty - hh*0.05); c.lineTo(x - bw * k / tiers, ty); }
+          c.closePath(); c.fill();
+          x += bw * (0.9 + R() * 1.4) + (i < 2 ? R()*10 : 0);
+        }
+      }
+      // marine layer between ridges
+      if (i < L - 1){
+        g = c.createLinearGradient(0, base - amp*0.2, 0, shore);
+        g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, bg);
+        c.globalAlpha = 0.5 - t * 0.3; c.fillStyle = g; c.fillRect(0, base - amp*0.2, w, shore - base + amp*0.2); c.globalAlpha = 1;
+      }
+    }
+    // water
+    g = c.createLinearGradient(0, shore, 0, we); g.addColorStop(0, water); g.addColorStop(1, bg);
+    c.fillStyle = g; c.fillRect(0, shore, w, we - shore);
+    // reflection of the nearest ridge, broken into ripples
+    const nr = ridges[L - 1];
+    c.fillStyle = near; c.globalAlpha = 0.28;
+    for (let yy = shore; yy < we; yy += 3){
+      const depth = (yy - shore) / (we - shore);
+      for (let x = 0; x < w; x += 9 + R()*16){
+        const mirror = shore + (shore - nr.y(x)) * 0.6;
+        if (yy < mirror) c.fillRect(x + (R()-.5)*4, yy, 6 + R()*14, 1.1);
+      }
+      c.globalAlpha = 0.28 * (1 - depth);
+    }
+    c.globalAlpha = 1;
+    // a few light glints on the water
+    c.fillStyle = bg; c.globalAlpha = 0.35;
+    for (let k = 0; k < w / 22; k++){ c.fillRect(R()*w, shore + 3 + R()*(we - shore - 10), 8 + R()*28, 1); }
+    c.globalAlpha = 1;
+  }
+  const redraw = () => requestAnimationFrame(drawHorizon);
+  new ResizeObserver(redraw).observe(cv);
+  new MutationObserver(redraw).observe(root, { attributes:true, attributeFilter:['data-theme'] });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', redraw);
+  if (document.fonts) document.fonts.ready.then(redraw);
+
+  const cp = document.getElementById('copy-email');
+  cp.addEventListener('click', () => {
+    const done = () => { cp.textContent = 'Copied'; setTimeout(() => cp.textContent = 'Copy', 1600); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); cp.textContent = 'Selected'; };
+    try { navigator.clipboard.writeText('gdt714308@icloud.com').then(done, sel); } catch (e) { sel(); }
+  });
+
+  /* ---------- About background: a faint watershed ---------- */
+  const tex = document.getElementById('about-tex');
+  function drawWatershed(){
+    const w = tex.clientWidth, h = tex.clientHeight;
+    if (!w || !h) return;
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    tex.width = w * dpr; tex.height = h * dpr;
+    const c = tex.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
+    c.strokeStyle = getComputedStyle(root).getPropertyValue('--river').trim();
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    const R = rng(20280614);
+    let budget = 14000;   // segment cap keeps tall pages fast
+    function grow(x, y, ang, width, bend){
+      while (width > 0.35 && budget-- > 0){
+        const step = 5 + R() * 4;
+        ang += (R() - 0.5) * 0.42 + bend;
+        const nx = x + Math.cos(ang) * step, ny = y + Math.sin(ang) * step;
+        if (nx < -20 || nx > w + 20 || ny < -20 || ny > h + 20) return;
+        c.globalAlpha = Math.min(0.32, 0.1 + width * 0.06);
+        c.lineWidth = width;
+        c.beginPath(); c.moveTo(x, y); c.lineTo(nx, ny); c.stroke();
+        x = nx; y = ny; width *= 0.991;
+        if (R() < 0.075){   // a tributary branches off upstream at an angle
+          const side = R() < 0.5 ? -1 : 1;
+          grow(x, y, ang + side * (0.55 + R() * 0.6), width * (0.5 + R() * 0.2), side * 0.01);
+          width *= 0.93;
+        }
+      }
+    }
+    // trunks enter from the lower edge and the sides, then branch upstream across the page
+    const trunks = Math.max(3, Math.round(w / 260));
+    for (let i = 0; i < trunks; i++) grow(w * (i + 0.3 + R() * 0.4) / trunks, h + 10, -Math.PI / 2 + (R() - 0.5) * 0.6, 3.2 + R(), 0);
+    // side rivers at several heights so the network reaches the top of the page too
+    const sides = Math.max(2, Math.round(h / 700));
+    for (let i = 0; i < sides; i++){
+      grow(-10, h * (i + 0.2 + R() * 0.5) / sides, -0.35 + (R() - 0.5) * 0.4, 2.6, 0);
+      grow(w + 10, h * (i + 0.3 + R() * 0.5) / sides, Math.PI + 0.35 + (R() - 0.5) * 0.4, 2.6, 0);
+    }
+    c.globalAlpha = 1;
+  }
+  const redrawShed = () => requestAnimationFrame(drawWatershed);
+  new ResizeObserver(redrawShed).observe(tex);
+  new MutationObserver(redrawShed).observe(root, { attributes:true, attributeFilter:['data-theme'] });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', redrawShed);
+
+  /* ---------- sections ---------- */
+  const views = [...document.querySelectorAll('.view')];
+  const links$ = [...document.querySelectorAll('nav a')];
+  function route(){
+    const key = (location.hash || '#about').slice(1);
+    const v = document.getElementById('v-' + key) || document.getElementById('v-about');
+    views.forEach(x => x.hidden = x !== v);
+    const k = v.id.slice(2);
+    links$.forEach(a => a.dataset.view === k ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
+  }
+  addEventListener('hashchange', route); route();
+})();
+</script>
+</body>
+</html>
